@@ -1,0 +1,18 @@
+#! /bin/bash
+stock1=20
+stock2=-20
+
+stock=$(/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf $4}')
+stockper=$(/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1) "%"}')
+stock=${stock%???}
+
+if [ "$stock" -le "$stock2" ] ; then
+    echo -n "<fc=#FF0000> $stockper</fc>"
+elif [ "$stock" -ge "$stock1" ] ; then
+    echo -n  "<fc=#00ff00> $stockper</fc>"
+else
+    echo -n  "<fc=#ffa500>$stockper</fc>"
+fi
+
+#/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1)}'
+

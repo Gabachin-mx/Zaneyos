@@ -1,0 +1,17 @@
+#! /bin/bash
+
+temp1=10
+temp2=-10
+
+temp=$(/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf $4}')
+temp=${temp%???}
+
+if [ "$temp" -le "$temp2" ] ; then
+    echo -n "%{F#f00} $temp ",  & /home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1) "%"}'
+elif [ "$temp" -ge "$temp1" ] ; then
+    echo -n "%{F#00ff00} $temp,  " & /home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1) "%"}'
+else
+    echo -n "%{F#ffa500} $temp,  " & /home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1) "%"}'
+fi
+
+#/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf substr($5,2, length($1)-1)}'

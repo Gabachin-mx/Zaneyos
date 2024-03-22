@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#sensors | grep -i id | awk '{print $4 " °C"}' | cut -c 2,3,4,5,6,7,8,9
+
+#sensors | grep -i CPU | awk '{print $2}' | cut -c 2,3,4,5,6,7,8,9
+
+temp1=70
+temp2=80
+
+temp=$(sensors | grep 'Package id 0:' | awk '{print $4}' | sed 's/+//'| sed 's/.0°C//')
+temp=${temp%???}
+
+if [ "$temp" -ge "$temp2" ] ; then
+    echo -e "%{F#ff0000} $temp °C"
+elif [ "$temp" -ge "$temp1" ] ; then
+    echo -e "%{F#ffa500} $temp °C"
+else
+    echo -e "%{F#00ff00} $temp °C"
+
+fi

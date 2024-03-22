@@ -1,0 +1,37 @@
+#!/bin/bash
+
+showVol() {
+    BRT="$(light)"
+    BRT="$(echo "scale=1; $BRT/10" | bc)"
+    BRT="$(printf "%.0f\n" $BRT)"
+    BRT="$(echo "scale=0; $BRT*10" | bc)"
+    if test -e /tmp/brt-id ; then
+        ARG="-r $(head -n 1 /tmp/brt-id)"
+    else
+        ARG=""
+    fi
+    echo $(notify-send $ARG -p -u low "Brightness: $BRT%") > /tmp/brt-id
+}
+
+volUp() {
+    light -A 10
+}
+
+volDown() {
+    light -U 10
+}
+
+
+# main part
+
+case "$1" in
+    "up")
+            volUp
+            ;;
+    "down")
+            volDown
+            ;;
+    *)
+            ;;
+esac
+showVol

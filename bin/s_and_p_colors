@@ -1,0 +1,15 @@
+#! /bin/bash
+
+temp1=20
+temp2=-20
+
+temp=$(/home/paul/.local/bin/stock.sh ^GSPC | awk '{printf $4}')
+temp=${temp%???}
+
+if [ "$temp" -le "$temp2" ] ; then
+    echo -e "%{F#f00} $temp "
+elif [ "$temp" -ge "$temp1" ] ; then
+    echo -e "%{F#ffa500} $temp "
+else
+    echo -e "%{F#00ff00} $temp "
+fi

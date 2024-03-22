@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#sensors | grep -i id | awk '{print $4 " °C"}' | cut -c 2,3,4,5,6,7,8,9
+
+#sensors | grep -i CPU | awk '{print $2}' | cut -c 2,3,4,5,6,7,8,9
+
+fan1=3000
+fan2=4500
+
+fan=$(sensors | grep -i fan | awk '{print $3}' )
+fan=${fan%}
+
+if [ "$fan" -ge "$fan2" ] ; then
+    echo "<fc=#FF0000>$fan RPM</fc>"
+elif [ "$fan" -ge "$fan1" ] ; then
+    echo "<fc=#C1A24E>$fan RPM</fc>"
+else
+    echo "<fc=#AAC0F0>$fan RPM</fc>"
+
+fi
