@@ -63,6 +63,7 @@ in {
             jq
             killall
             lxappearance
+            meld
             mesa
             meson
             mpv

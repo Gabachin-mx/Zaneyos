@@ -39,7 +39,7 @@ in with lib; {
         kb_variant = altgr-intl
         # kb_variant = ${theKBDVariant}
 	kb_options = grp:alt_shift_toggle
-        kb_options=caps:super
+        # kb_options=caps:super
         follow_mouse = 1
         touchpad {
           natural_scroll = false
@@ -136,7 +136,8 @@ in with lib; {
       '' else ''
 	bind = ${modifier},W,exec,${browser}
       ''}
-      bind = ${modifier},E,exec,emopicker9000
+      bind = ${modifier}SHIFT,E,exec,emopicker9000
+      bind = ${modifier},E,exec,emacsclient -c
       bind = ${modifier},S,exec,screenshootin
       bind = ${modifier}SHIFT,D,exec,discord
       bind = ${modifier},O,exec,obs
